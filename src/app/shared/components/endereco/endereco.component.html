@@ -1,0 +1,77 @@
+<div [formGroup]="formEndereco">
+  <p>
+    <button mat-stroked-button color="accent" title="Encontrar com o Maps" (click)="abrirDialogMaps()">
+      <mat-icon>place</mat-icon>Preencher com o Maps
+    </button>
+  </p>
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-6">
+      <mat-form-field appearance="legacy">
+        <mat-label>Rua</mat-label>
+        <input matInput formControlName="rua" required="required"/>
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-6">
+      <mat-form-field appearance="legacy">
+        <mat-label>Numero</mat-label>
+        <input matInput formControlName="numero" required="required"/>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-6">
+      <mat-form-field appearance="legacy">
+        <mat-label>Bairro</mat-label>
+        <input matInput formControlName="bairro" required="required"/>
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-6">
+      <mat-form-field appearance="legacy">
+        <mat-label>CEP</mat-label>
+        <input matInput formControlName="cep"/>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div>
+    <mat-form-field appearance="legacy">
+      <mat-label>Complemento</mat-label>
+      <input matInput formControlName="complemento"/>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-6">
+      <mat-form-field appearance="legacy">
+        <mat-label>Cidade</mat-label>
+        <input matInput formControlName="cidade_id" required="required"/>
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-6">
+      <mat-form-field appearance="legacy">
+        <mat-label>Estado</mat-label>
+        <input matInput disabled>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-6">
+      <mat-form-field appearance="legacy">
+        <mat-label>Latitude</mat-label>
+        <input matInput formControlName="lat" />
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-6">
+      <mat-form-field appearance="legacy">
+        <mat-label>Longitude</mat-label>
+        <input matInput formControlName="lng" />
+      </mat-form-field>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<mat-form-field>
+  <mat-label>{{ label }}</mat-label>
+  <input matInput type="text" [placeholder]="placeholder"
+  [attr.aria-label]="label" [formControl]="textControl" [matAutocomplete]="auto" [required]="required"/>
+
+  <mat-autocomplete [displayWith]="displayFn" #auto="matAutocomplete" (optionSelected)="setCategoria($event)">
+    <mat-option *ngFor="let cat of categorias" [value]="cat">
+      {{ cat.nome }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

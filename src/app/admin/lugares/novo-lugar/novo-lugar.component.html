@@ -1,0 +1,54 @@
+<h1 mat-dialog-title>Novo Lugar</h1>
+
+<form [formGroup]="formLugar">
+  <div mat-dialog-content>
+    <mat-form-field appearance="legacy">
+      <mat-label>Nome</mat-label>
+      <input matInput placeholder="" required>
+      <!-- <mat-hint>Hint</mat-hint> -->
+    </mat-form-field>
+
+    <app-autocomplete-categorias [required]="true"></app-autocomplete-categorias>
+
+    <mat-form-field appearance="legacy">
+      <mat-label>Sobre</mat-label>
+      <textarea matInput rows="3"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <mat-label>Celular</mat-label>
+      <input matInput placeholder="">
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <mat-label>Telefone</mat-label>
+      <input matInput placeholder="">
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <mat-label>Site</mat-label>
+      <input matInput placeholder="">
+    </mat-form-field>
+
+    <h4>Redes Sociais</h4>
+    <mat-form-field appearance="legacy">
+      <mat-label>Fecebook</mat-label>
+      <span matPrefix>facebook.com/</span>
+      <input matInput placeholder="username">
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <mat-label>Intagram</mat-label>
+      <span matPrefix>instagram.com/</span>
+      <input matInput placeholder="username">
+    </mat-form-field>
+
+    <h4>Endereco</h4>
+    <app-endereco [parentForm]="formLugar"></app-endereco>
+
+  </div>
+  <div mat-dialog-actions>
+    <app-button-salvar mat-dialog-close cdkFocusInitial>Salvar</app-button-salvar>
+    <app-button-cancelar mat-dialog-close>Cancelar</app-button-cancelar>
+  </div>
+</form>

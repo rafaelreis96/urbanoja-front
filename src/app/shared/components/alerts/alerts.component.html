@@ -1,0 +1,6 @@
+<div *ngIf="alerts.length > 0">
+  <p *ngFor="let alert of alerts" [class]="alert.class">
+    {{ alert.message }}
+    <a role="button" title="Remover" (click)="clear(alert)">&#x2715;</a>
+  </p>
+</div>

@@ -1,0 +1,43 @@
+<p>
+  <app-button-novo (click)="abrirDialogCadastro()"></app-button-novo>
+</p>
+
+<app-custom-mat-table
+  [cols]="cols"
+  [data]="lugares"
+  [pagination]="pagination"
+  [loading]="true"
+  [actionButtons]="true">
+
+  <ng-container matColumnDef="logo">
+    <th mat-header-cell *matHeaderCellDef style="width: 80px"> Logo </th>
+    <td mat-cell *matCellDef="let element">
+      <div *ngIf="element.logo; else noIcone">
+        <img width="42" height="42" [src]="element.logo.thumbnail" />
+      </div>
+      <ng-template #noIcone>
+        <mat-icon>store</mat-icon>
+      </ng-template>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="nome">
+    <th mat-header-cell *matHeaderCellDef> Nome </th>
+    <td mat-cell *matCellDef="let element">
+      <a class="d-block" [routerLink]="['/admin/empresas/cadastro', element.id ]">{{element.nome}}</a>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="categoria">
+    <th mat-header-cell *matHeaderCellDef> Categoria </th>
+    <td mat-cell *matCellDef="let element"> {{element.categoria.nome}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="endereco">
+    <th mat-header-cell *matHeaderCellDef> Cidade </th>
+    <td mat-cell *matCellDef="let element">
+      <span *ngIf="element.endereco">{{element.endereco.cidade.nome}}</span>
+    </td>
+  </ng-container>
+
+</app-custom-mat-table>

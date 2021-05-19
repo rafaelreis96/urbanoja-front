@@ -1,0 +1,45 @@
+<header>
+  <mat-toolbar color="primary" class="mat-elevation-z3" role="heading">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon class="text-white" aria-hidden="false" aria-label="Ocultar/Exibir Menu">menu</mat-icon>
+    </button>
+    <span class="text-light">{{ title }}</span>
+
+    <span style="flex: 1 1 auto;"></span>
+
+    <div *ngIf="user">
+      <button class="text-white" mat-button [matMenuTriggerFor]="menuUser">
+        {{ user }}<mat-icon>expand_more</mat-icon>
+      </button>
+      <mat-menu #menuUser="matMenu">
+        <button mat-menu-item>
+          <mat-icon>person</mat-icon>Meus dados
+        </button>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>Sair
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+</header>
+
+<main>
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav [mode]="modeSidenav" opened>
+      <mat-nav-list>
+        <a href="#" mat-list-item
+        *ngFor="let item of menuItems"
+        [routerLink]="[item.router]"
+        [routerLinkActive]="['active']">
+          <mat-icon matListIcon>{{ item.icon }}</mat-icon>
+          {{ item.label }}
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+</main>

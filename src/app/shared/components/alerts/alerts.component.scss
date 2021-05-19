@@ -1,0 +1,10 @@
+a {
+  cursor: pointer;
+  display: block;
+  float: right;
+  width: 12px;
+  &:hover {
+    color: red !important;
+    transition: 300ms;
+  }
+}

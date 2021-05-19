@@ -29,6 +29,7 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/assets/css/bootstrap-grid.min.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -127,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "urbanoja"
+  "defaultProject": "urbanoja",
+  "cli": {
+    "analytics": "0f26d6bb-a368-4208-9d26-cce373fa1868"
+  }
 }

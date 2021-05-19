@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>{{ titulo }}</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="outline">
+    <input matInput #pesquisa type="text" (focus)="pesquisarPlaces()" placeholder="Pesquisar">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
+  <p *ngIf="enderecoFormatado">
+    <small>{{ enderecoFormatado }}</small>
+  </p>
+
+  <agm-map id="map" [latitude]="lat" [longitude]="lng" [zoom]="zoom" >
+    <agm-marker
+      [latitude]="lat"
+      [longitude]="lng"
+      [markerDraggable]="true"
+      (dragEnd)="markerDragEnd($event)">
+    </agm-marker>
+  </agm-map>
+
+  <div class="grupo-buttons">
+    <div>
+      <button mat-flat-button type="button" class="text-white" color="primary" title="Minha localização" (click)="enderecoAtual()" >
+        <mat-icon>place</mat-icon> Meu Local
+      </button>
+    </div>
+
+    <div>
+      <button mat-flat-button type="button" class="text-white" color="accent" title="Confirmar" [mat-dialog-close]="place">
+        <mat-icon>check</mat-icon> Confirmar
+      </button>
+    </div>
+
+    <div>
+      <button mat-flat-button type="button" color="warn" (click)="cancelar()" title="Cancelar" mat-dialog-close>
+        <mat-icon>clear</mat-icon> Cancelar
+      </button>
+    </div>
+  </div>
+</div>

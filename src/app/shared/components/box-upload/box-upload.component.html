@@ -1,0 +1,85 @@
+<div *ngIf="multiple || this.srcList.length == 0" class="box-upload" [class.bg-drag]="isDrag">
+  <input [id]="randId" class="input-file" type="file" [multiple]="multiple" [accept]="accept"/>
+  <p>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 48 37.68"  shape-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="nonzero" fill="#888" xmlns:v="https://vecta.io/nano"><path d="M39.99 12.49C37.77 3.65 28.81-1.72 19.97.5 13.07 2.23 8.05 8.2 7.54 15.3c-4.91.81-8.23 5.44-7.42 10.35a9 9 0 0 0 8.92 7.53h7.49v-3H9.04c-3.32 0-6-2.68-6-6a6 6 0 0 1 6-6c.82 0 1.49-.67 1.49-1.5A13.51 13.51 0 0 1 24.02 3.17c6.45 0 12.01 4.56 13.25 10.89a1.52 1.52 0 0 0 1.28 1.2c4.1.58 6.95 4.38 6.37 8.48a7.51 7.51 0 0 1-7.39 6.44h-6v3h6c5.8-.02 10.48-4.73 10.47-10.53a10.49 10.49 0 0 0-8.01-10.16zm-17.02 6.13l-6 6 2.11 2.11 3.45-3.43v14.38h3V23.3l3.44 3.43 2.11-2.11-6-6a1.5 1.5 0 0 0-2.11 0z"/></svg>
+  </p>
+  <p>
+    <small>Arraste e solte os arquivos</small>
+  </p>
+  <p>
+    <label role="button" class="label-button" [for]="randId">
+      Selecionar
+    </label>
+  </p>
+  <p *ngIf="msgError" class="text-danger">
+    <small>{{ msgError }}</small>
+  </p>
+
+  <div style="height: 10px">
+    <mat-progress-bar *ngIf="progress" mode="determinate" color="accent" [value]="progress" ></mat-progress-bar>
+  </div>
+</div>
+
+<div [ngSwitch]="stylePreview()">
+  <div *ngSwitchCase="'img'">
+    <div class="preview-imagem">
+      <div>
+        <img class="imagem" [ngStyle]="styleCss" [src]="srcList[0]" (load)="isLoadImagem = true"/>
+        <mat-spinner *ngIf="!isLoadImagem && !progress" diameter="50" color="accent"></mat-spinner>
+      </div>
+
+      <div *ngIf="isLoadImagem" class="mt-2">
+
+        <button mat-mini-fab color="warn" (click)="remover(0)" title="Remover" aria-label="Remover">
+          <mat-icon>clear</mat-icon>
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <div *ngSwitchCase="'grid'">
+    <div class="py-4">
+      <mat-divider></mat-divider>
+    </div>
+    <div class="preview-grid">
+      <mat-grid-list [cols]="cols" [rowHeight]="rowHeight">
+        <mat-grid-tile *ngFor="let src of srcList; let i = index">
+          <div class="item-grid">
+            <img class="imagem-grid" [src]="src" />
+            <button
+              mat-mini-fab
+              class="btn-grid-remove"
+              color="warn"
+              title="Remover Imagem"
+              aria-label="Remover Imagem"
+              (click)="remover(i)">
+                <mat-icon>clear</mat-icon>
+            </button>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </div>
+
+  <div *ngSwitchCase="'list'">
+    <div class="list-files" *ngIf="files.length">
+      <mat-list role="list">
+        <div mat-subheader>Arquivos</div>
+        <mat-list-item *ngFor="let file of files; let i = index">
+          <mat-icon mat-list-icon>insert_drive_file</mat-icon>
+          <div mat-line>{{ file.name }}</div>
+          <div mat-line>{{ calcTamanho(file.size) }}</div>
+          <button mat-mini-fab color="warn"
+            title="Remover Arquivo"
+            aria-label="Remover Arquivo"
+            (click)="remover(i)">
+            <mat-icon>clear</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </div>
+</div>
+
+
